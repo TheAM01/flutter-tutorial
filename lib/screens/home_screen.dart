@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'music.dart';
 import 'row_demo.dart';
+import 'preferences.dart';
+import 'api.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,14 +28,28 @@ class HomeScreen extends StatelessWidget {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => RowDemo()));
             },
-            child: Text("Navigate to next screen."),
+            child: Text("Row Demo"),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MusicScreen()));
             },
-            child: Text("Navigate to music panel."),
+            child: Text("Music Panel"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => PreferencesScreen()));
+            },
+            child: Text("Preferences"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ApiScreen()));
+            },
+            child: Text("API"),
           ),
         ],
       ),

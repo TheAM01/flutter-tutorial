@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MusicScreen extends StatefulWidget {
   const MusicScreen({super.key});
@@ -12,6 +13,19 @@ class _MusicScreenState extends State<MusicScreen> {
     {"name": "Jhol", "artist": "Maanu, Annural Khalid"},
     {"name": "Iraaday", "artist": "Abdul Hannan"}
   ];
+
+  Future<void> _savePreference() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("listens_to_music", true);
+  }
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _savePreference();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +50,7 @@ class _MusicScreenState extends State<MusicScreen> {
                     favoriteMusic.removeAt(index);
                   });
                 },
-                icon: const Icon(Icons.delete_forever)
+                icon: const Icon(Icons.delete)
               ),
             );
           }),
@@ -80,6 +94,7 @@ class _MusicScreenState extends State<MusicScreen> {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
+                                icon: Icon(Icons.error),
                                 title: const Text("Error"),
                                 content: const Text("Song name or artist name is empty."),
                                 actions: [
